@@ -1,0 +1,1939 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangmengqi/Desktop/UW/Courses/Econ872/Secondpart/task210108/stationary/87_06/estimate_stationary_87_06.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 Jan 2021, 17:53:39
+{txt}
+{com}. 
+. use rawdata/data_updated_201009.dta,clear
+{txt}
+{com}. 
+. replace cpi = log(cpi)
+{txt}(4,774 real changes made)
+
+{com}. replace cpi_usa = log(cpi_usa)
+{txt}(4,784 real changes made)
+
+{com}. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 496
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. * pi_t = p_t - p_(t-1)
+. //gen pi = d.cpi
+. //gen pi_dollar = d.cpi_usa 
+. //gen pi_r = pi_dollar - pi
+. * qt = s_t-pr_t
+. gen p_r = cpi_usa - cpi
+{txt}(682 missing values generated)
+
+{com}. gen q = s_fama - p_r    
+{txt}(682 missing values generated)
+
+{com}. gen p_r_12 = l12.p_r
+{txt}(778 missing values generated)
+
+{com}. gen pi_r_yoy = (p_r - p_r_12)/12
+{txt}(798 missing values generated)
+
+{com}. 
+. gen p_r_1 = l.p_r
+{txt}(682 missing values generated)
+
+{com}. gen p_r_2 = l2.p_r
+{txt}(682 missing values generated)
+
+{com}. gen p_r_3 = l3.p_r
+{txt}(691 missing values generated)
+
+{com}. gen p_r_4 = l4.p_r
+{txt}(700 missing values generated)
+
+{com}. gen p_r_5 = l5.p_r
+{txt}(709 missing values generated)
+
+{com}. gen p_r_6 = l6.p_r
+{txt}(720 missing values generated)
+
+{com}. gen p_r_7 = l7.p_r
+{txt}(729 missing values generated)
+
+{com}. gen p_r_8 = l8.p_r
+{txt}(738 missing values generated)
+
+{com}. gen p_r_9 = l9.p_r
+{txt}(749 missing values generated)
+
+{com}. gen p_r_10 = l10.p_r
+{txt}(758 missing values generated)
+
+{com}. gen p_r_11 = l11.p_r
+{txt}(767 missing values generated)
+
+{com}. 
+. gen s_T_extra = p_r - (p_r + p_r_1 + p_r_2 + p_r_3 + p_r_4 + p_r_5 + p_r_6 + p_r_7 + p_r_8 + p_r_9 + p_r_10 + p_r_11)/12
+{txt}(1,109 missing values generated)
+
+{com}. 
+. keep if year >= 1987 & year <= 2006
+{txt}(2,816 observations deleted)
+
+{com}. 
+. keep country2 cty2 date year month t q s_fama i_diff p_r pi_r_yoy s_T_extra
+{txt}
+{com}. save data/data_var_estimate_87_06.dta, replace
+{txt}(note: file data/data_var_estimate_87_06.dta not found)
+file data/data_var_estimate_87_06.dta saved
+
+{com}. 
+. 
+.         ** 2 "CAD" 
+.                 * data available: 06/1979 (t=1) - 11/2017 (t=462)
+. 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "CAD"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_CAD_87_06.dta, replace
+{txt}(note: file temp/VAR_CAD_87_06.dta not found)
+file temp/VAR_CAD_87_06.dta saved
+
+{com}. 
+.         ** 3 "CHF" 
+.                 * data available: 01/1989 (t=116) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "CHF"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_CHF_87_06.dta, replace
+{txt}(note: file temp/VAR_CHF_87_06.dta not found)
+file temp/VAR_CHF_87_06.dta saved
+
+{com}. 
+.         ** 4 "DEM" 
+.                 * data available: 06/1979 (t=1) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "DEM"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_DEM_87_06.dta, replace
+{txt}(note: file temp/VAR_DEM_87_06.dta not found)
+file temp/VAR_DEM_87_06.dta saved
+
+{com}.         
+.         ** 5 "FRF" 
+.                 * data available: 06/1979 (t=1) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "FRF"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_FRF_87_06.dta, replace
+{txt}(note: file temp/VAR_FRF_87_06.dta not found)
+file temp/VAR_FRF_87_06.dta saved
+
+{com}. 
+.         ** 6 "GBP" 
+.                 * data available: 06/1979 (t=1) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "GBP"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_GBP_87_06.dta, replace
+{txt}(note: file temp/VAR_GBP_87_06.dta not found)
+file temp/VAR_GBP_87_06.dta saved
+
+{com}.                 
+.         ** 7 "ITL"
+.                 * data available: 06/1979 (t=1) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "ITL"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_ITL_87_06.dta, replace
+{txt}(note: file temp/VAR_ITL_87_06.dta not found)
+file temp/VAR_ITL_87_06.dta saved
+
+{com}.         
+.         ** 8 "JPY" 
+.                 * data available: 06/1979 (t=1) - 02/2020 (t=489)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "JPY"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_JPY_87_06.dta, replace
+{txt}(note: file temp/VAR_JPY_87_06.dta not found)
+file temp/VAR_JPY_87_06.dta saved
+
+{com}.         
+.         ** 9 "NOK" 
+.                 * data available: 01/1986 (t=80) - 11/2017 (t=462)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear             
+{txt}
+{com}.                 keep if country2 == "NOK"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_NOK_87_06.dta, replace
+{txt}(note: file temp/VAR_NOK_87_06.dta not found)
+file temp/VAR_NOK_87_06.dta saved
+
+{com}.                 
+.                 
+.         ** 11 "SEK"
+.                 * data available: 01/1987 (t=92) - 11/2017 (t=462)
+.                 
+.                 use data/data_var_estimate_87_06.dta, clear
+{txt}
+{com}.                 keep if country2 == "SEK"
+{txt}(2,400 observations deleted)
+
+{com}.                 
+.                 save temp/VAR_SEK_87_06.dta, replace
+{txt}(note: file temp/VAR_SEK_87_06.dta not found)
+file temp/VAR_SEK_87_06.dta saved
+
+{com}. 
+. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * CAD
+. clear matrix
+{txt}
+{com}. use temp/VAR_CAD_87_06.dta, clear
+{txt}
+{com}. sort year month
+{txt}
+{com}. replace t = _n
+{txt}(240 real changes made)
+
+{com}. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 240
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_CAD_est_87_06.dta, replace
+{txt}(note: file temp/VAR_CAD_est_87_06.dta not found)
+file temp/VAR_CAD_est_87_06.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_CAD.txt", novarnames replace
+{res}{txt}(note: file matrix/B_CAD.txt not found)
+{txt}file matrix/B_CAD.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_CAD.txt", novarnames replace
+{res}{txt}(note: file matrix/V_CAD.txt not found)
+{txt}file matrix/V_CAD.txt saved
+
+{com}. 
+. file open outdat using matrix/T_CAD.txt, write replace
+{txt}(note: file matrix/T_CAD.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * CHF
+. clear matrix
+{txt}
+{com}. use temp/VAR_CHF_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_CHF_est_87_06.dta, replace
+{txt}(note: file temp/VAR_CHF_est_87_06.dta not found)
+file temp/VAR_CHF_est_87_06.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_CHF.txt", novarnames replace
+{res}{txt}(note: file matrix/B_CHF.txt not found)
+{txt}file matrix/B_CHF.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_CHF.txt", novarnames replace
+{res}{txt}(note: file matrix/V_CHF.txt not found)
+{txt}file matrix/V_CHF.txt saved
+
+{com}. 
+. file open outdat using matrix/T_CHF.txt, write replace
+{txt}(note: file matrix/T_CHF.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * DEM
+. clear matrix
+{txt}
+{com}. use temp/VAR_DEM_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_DEM_est_87_06.dta, replace
+{txt}(note: file temp/VAR_DEM_est_87_06.dta not found)
+file temp/VAR_DEM_est_87_06.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_DEM.txt", novarnames replace
+{res}{txt}(note: file matrix/B_DEM.txt not found)
+{txt}file matrix/B_DEM.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_DEM.txt", novarnames replace
+{res}{txt}(note: file matrix/V_DEM.txt not found)
+{txt}file matrix/V_DEM.txt saved
+
+{com}. 
+. file open outdat using matrix/T_DEM.txt, write replace
+{txt}(note: file matrix/T_DEM.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * FRF
+. clear matrix
+{txt}
+{com}. use temp/VAR_FRF_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_FRF_est_87_06.dta, replace
+{txt}(note: file temp/VAR_FRF_est_87_06.dta not found)
+file temp/VAR_FRF_est_87_06.dta saved
+
+{com}. 
+. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_FRF.txt", novarnames replace
+{res}{txt}(note: file matrix/B_FRF.txt not found)
+{txt}file matrix/B_FRF.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_FRF.txt", novarnames replace
+{res}{txt}(note: file matrix/V_FRF.txt not found)
+{txt}file matrix/V_FRF.txt saved
+
+{com}. 
+. file open outdat using matrix/T_FRF.txt, write replace
+{txt}(note: file matrix/T_FRF.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * GBP
+. clear matrix
+{txt}
+{com}. use temp/VAR_GBP_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_GBP_est_87_06.dta, replace
+{txt}(note: file temp/VAR_GBP_est_87_06.dta not found)
+file temp/VAR_GBP_est_87_06.dta saved
+
+{com}. 
+. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_GBP.txt", novarnames replace
+{res}{txt}(note: file matrix/B_GBP.txt not found)
+{txt}file matrix/B_GBP.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_GBP.txt", novarnames replace
+{res}{txt}(note: file matrix/V_GBP.txt not found)
+{txt}file matrix/V_GBP.txt saved
+
+{com}. 
+. file open outdat using matrix/T_GBP.txt, write replace
+{txt}(note: file matrix/T_GBP.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * ITL
+. clear matrix
+{txt}
+{com}. use temp/VAR_ITL_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_ITL_est_87_06.dta, replace
+{txt}(note: file temp/VAR_ITL_est_87_06.dta not found)
+file temp/VAR_ITL_est_87_06.dta saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_ITL.txt", novarnames replace
+{res}{txt}(note: file matrix/B_ITL.txt not found)
+{txt}file matrix/B_ITL.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_ITL.txt", novarnames replace
+{res}{txt}(note: file matrix/V_ITL.txt not found)
+{txt}file matrix/V_ITL.txt saved
+
+{com}. 
+. file open outdat using matrix/T_ITL.txt, write replace
+{txt}(note: file matrix/T_ITL.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * JPY
+. clear matrix
+{txt}
+{com}. use temp/VAR_JPY_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_JPY_est_87_06.dta, replace
+{txt}(note: file temp/VAR_JPY_est_87_06.dta not found)
+file temp/VAR_JPY_est_87_06.dta saved
+
+{com}. 
+. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_JPY.txt", novarnames replace
+{res}{txt}(note: file matrix/B_JPY.txt not found)
+{txt}file matrix/B_JPY.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_JPY.txt", novarnames replace
+{res}{txt}(note: file matrix/V_JPY.txt not found)
+{txt}file matrix/V_JPY.txt saved
+
+{com}. 
+. file open outdat using matrix/T_JPY.txt, write replace
+{txt}(note: file matrix/T_JPY.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * NOK
+. clear matrix
+{txt}
+{com}. use temp/VAR_NOK_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_NOK_est_87_06.dta, replace
+{txt}(note: file temp/VAR_NOK_est_87_06.dta not found)
+file temp/VAR_NOK_est_87_06.dta saved
+
+{com}. 
+. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_NOK.txt", novarnames replace
+{res}{txt}(note: file matrix/B_NOK.txt not found)
+{txt}file matrix/B_NOK.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_NOK.txt", novarnames replace
+{res}{txt}(note: file matrix/V_NOK.txt not found)
+{txt}file matrix/V_NOK.txt saved
+
+{com}. 
+. file open outdat using matrix/T_NOK.txt, write replace
+{txt}(note: file matrix/T_NOK.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * SEK
+. clear matrix
+{txt}
+{com}. use temp/VAR_SEK_87_06.dta, clear
+{txt}
+{com}. 
+. ** Initial VARs
+. quietly var q pi_r_yoy i_diff, lags(1/3)
+{txt}
+{com}. scalar T = e(N)
+{txt}
+{com}. 
+. matrix B = e(b)
+{txt}
+{com}. 
+. matrix V = e(Sigma)
+{txt}
+{com}. 
+. matrix B0_hat = [B[1,10] \ B[1, 20] \ B[1, 30]]
+{txt}
+{com}. 
+. matrix B1_hat = [B[1, 1], B[1, 4], B[1, 7] \ B[1, 11], B[1, 14], B[1, 17] \ B[1, 21], B[1, 24], B[1, 27]]
+{txt}
+{com}. 
+. matrix B2_hat = [B[1, 2], B[1, 5], B[1, 8] \ B[1, 12], B[1, 15], B[1, 18] \ B[1, 22], B[1, 25], B[1, 28]]
+{txt}
+{com}. 
+. matrix B3_hat = [B[1, 3], B[1, 6], B[1, 9] \ B[1, 13], B[1, 16], B[1,19] \ B[1, 23], B[1, 26], B[1, 29]]
+{txt}
+{com}. 
+. matrix zero = [0, 0, 0 \ 0, 0, 0 \ 0, 0, 0]
+{txt}
+{com}. 
+. matrix Identity = I(3)
+{txt}
+{com}. 
+. matrix B_hat1 = [B1_hat, B2_hat, B3_hat \ Identity, zero, zero \ zero, Identity, zero]
+{txt}
+{com}. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. ** keep residuals from initial VARs
+. predict u1, r equation(#1)
+{txt}(3 missing values generated)
+
+{com}. predict u2, r equation(#2)
+{txt}(3 missing values generated)
+
+{com}. predict u3, r equation(#3)
+{txt}(3 missing values generated)
+
+{com}. 
+. drop if u1==.
+{txt}(3 observations deleted)
+
+{com}. drop if u2==.
+{txt}(0 observations deleted)
+
+{com}. drop if u3==.
+{txt}(0 observations deleted)
+
+{com}. drop t 
+{txt}
+{com}. sort year month
+{txt}
+{com}. gen t = _n
+{txt}
+{com}. 
+. * deviation from mean of real exchange rate, relative inflation and relative interest rate
+. gen q_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen q_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum q if cty2 == `i'
+{txt}  3{com}.         local q_mean = r(mean)
+{txt}  4{com}.         quietly replace q_dev = q - `q_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace q_mean = `q_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen pi_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen pi_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum pi_r_yoy if cty2 == `i'
+{txt}  3{com}.         local pi_mean = r(mean)
+{txt}  4{com}.         quietly replace pi_dev = pi_r_yoy - `pi_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace pi_mean = `pi_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. 
+. gen i_dev = .
+{txt}(237 missing values generated)
+
+{com}. gen i_mean = .
+{txt}(237 missing values generated)
+
+{com}. local i = 1
+{txt}
+{com}. while `i' <= 11{c -(}
+{txt}  2{com}.         quietly sum i_diff if cty2 == `i'
+{txt}  3{com}.         local i_mean = r(mean)
+{txt}  4{com}.         quietly replace i_dev = i_diff - `i_mean' if cty2 == `i'
+{txt}  5{com}.         quietly replace i_mean = `i_mean' if cty2 == `i'
+{txt}  6{com}.         local i = `i' + 1
+{txt}  7{com}. {c )-}
+{txt}
+{com}. sort cty2 t
+{txt}
+{com}. 
+. gen q_dev_lag = l.q_dev
+{txt}(1 missing value generated)
+
+{com}. gen q_dev_lag2 = l2.q_dev
+{txt}(2 missing values generated)
+
+{com}. gen pi_dev_lag = l.pi_dev
+{txt}(1 missing value generated)
+
+{com}. gen pi_dev_lag2 = l2.pi_dev
+{txt}(2 missing values generated)
+
+{com}. gen i_dev_lag = l.i_dev
+{txt}(1 missing value generated)
+
+{com}. gen i_dev_lag2 = l2.i_dev
+{txt}(2 missing values generated)
+
+{com}. 
+. save temp/VAR_SEK_est_87_06.dta, replace
+{txt}(note: file temp/VAR_SEK_est_87_06.dta not found)
+file temp/VAR_SEK_est_87_06.dta saved
+
+{com}. 
+. 
+. clear
+{txt}
+{com}. svmat B_hat1
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 9
+{p_end}
+
+{com}. export delimited using "matrix/B_SEK.txt", novarnames replace
+{res}{txt}(note: file matrix/B_SEK.txt not found)
+{txt}file matrix/B_SEK.txt saved
+
+{com}. 
+. clear
+{txt}
+{com}. svmat V
+{txt}number of observations will be reset to 3
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 3
+{p_end}
+
+{com}. export delimited using "matrix/V_SEK.txt", novarnames replace
+{res}{txt}(note: file matrix/V_SEK.txt not found)
+{txt}file matrix/V_SEK.txt saved
+
+{com}. 
+. file open outdat using matrix/T_SEK.txt, write replace
+{txt}(note: file matrix/T_SEK.txt not found)
+
+{com}. file write outdat (T)
+{txt}
+{com}. file close outdat
+{txt}
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangmengqi/Desktop/UW/Courses/Econ872/Secondpart/task210108/stationary/87_06/estimate_stationary_87_06.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 Jan 2021, 17:53:39
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

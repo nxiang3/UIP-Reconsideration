@@ -1,0 +1,1304 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangmengqi/Desktop/UW/Courses/Econ872/Secondpart/task210108/stationary/87_20/correction_stationary_87_20.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 Jan 2021, 17:47:49
+{txt}
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * CAD
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_CAD.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}.         
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9508055}}}{space 1}{space 1}{ralign 9:{res:{sf:-3.072149}}}{space 1}{space 1}{ralign 9:{res:{sf:-8.045909}}}{space 1}{space 1}{ralign 9:{res:{sf:  .051326}}}{space 1}{space 1}{ralign 9:{res:{sf:-4.672132}}}{space 1}{space 1}{ralign 9:{res:{sf: 11.56999}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0056628}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0024263}}}{space 1}{space 1}{ralign 9:{res:{sf: .9922497}}}{space 1}{space 1}{ralign 9:{res:{sf:  .023829}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0010636}}}{space 1}{space 1}{ralign 9:{res:{sf: .0586628}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0574645}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0013358}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0001051}}}{space 1}{space 1}{ralign 9:{res:{sf: .0055755}}}{space 1}{space 1}{ralign 9:{res:{sf:  .791657}}}{space 1}{space 1}{ralign 9:{res:{sf: .0013477}}}{space 1}{space 1}{ralign 9:{res:{sf:  .039898}}}{space 1}{space 1}{ralign 9:{res:{sf: .2054705}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0014531}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 5.209811}}}{space 1}{space 1}{ralign 9:{res:{sf:-4.204839}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.1195769}}}{space 1}{space 1}{ralign 9:{res:{sf:  .041366}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0171122}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0327985}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf:  1.00096}}}{space 1}{space 1}{ralign 9:{res:{sf: .9657445}}}{space 1}{space 1}{ralign 9:{res:{sf: .8997871}}}{space 1}{space 1}{ralign 9:{res:{sf:-.4311597}}}{space 1}{space 1}{ralign 9:{res:{sf: .2963895}}}{space 1}{space 1}{ralign 9:{res:{sf: .2963895}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2481913}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0226035}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0226035}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .1038778}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1038778}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0823172}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0823172}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+{res}Invalid
+{com}.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_CAD_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_CAD_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_CAD_correction_stationary_87_20.dta not found)
+file temp/VAR_CAD_correction_stationary_87_20.dta saved
+
+{com}. 
+. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * CHF
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_CHF.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9797343}}}{space 1}{space 1}{ralign 9:{res:{sf: -10.2537}}}{space 1}{space 1}{ralign 9:{res:{sf:-1.833099}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0167977}}}{space 1}{space 1}{ralign 9:{res:{sf: 8.546039}}}{space 1}{space 1}{ralign 9:{res:{sf:-5.042218}}}{space 1}{space 1}{ralign 9:{res:{sf: .0069223}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0016557}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.139938}}}{space 1}{space 1}{ralign 9:{res:{sf: .0051477}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0014996}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2319384}}}{space 1}{space 1}{ralign 9:{res:{sf: .0242156}}}{space 1}{space 1}{ralign 9:{res:{sf: .0000452}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0001209}}}{space 1}{space 1}{ralign 9:{res:{sf:  .145652}}}{space 1}{space 1}{ralign 9:{res:{sf: .8775018}}}{space 1}{space 1}{ralign 9:{res:{sf: .0009144}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0648216}}}{space 1}{space 1}{ralign 9:{res:{sf: .1292656}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0008253}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.563724}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.333566}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0241983}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0051692}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf: -.049264}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0209507}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9819593}}}{space 1}{space 1}{ralign 9:{res:{sf: .9819593}}}{space 1}{space 1}{ralign 9:{res:{sf: .9092502}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2052705}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2052705}}}{space 1}{space 1}{ralign 9:{res:{sf: .1981023}}}{space 1}{space 1}{ralign 9:{res:{sf: .1981023}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0691707}}}{space 1}{space 1}{ralign 9:{res:{sf: .0691707}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0123242}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0123242}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .1531945}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1531945}}}{space 1}{space 1}{ralign 9:{res:{sf: .2153864}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2153864}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .1225222}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1225222}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_CHF_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_CHF_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_CHF_correction_stationary_87_20.dta not found)
+file temp/VAR_CHF_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * DEM
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_DEM.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf:  1.02132}}}{space 1}{space 1}{ralign 9:{res:{sf:-2.971092}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.674773}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0538562}}}{space 1}{space 1}{ralign 9:{res:{sf:-2.433634}}}{space 1}{space 1}{ralign 9:{res:{sf:-14.06494}}}{space 1}{space 1}{ralign 9:{res:{sf: .0183242}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0021544}}}{space 1}{space 1}{ralign 9:{res:{sf:  1.00673}}}{space 1}{space 1}{ralign 9:{res:{sf: .0752718}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0011385}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0274966}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0224499}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0008689}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0001924}}}{space 1}{space 1}{ralign 9:{res:{sf: .0766003}}}{space 1}{space 1}{ralign 9:{res:{sf: .9774942}}}{space 1}{space 1}{ralign 9:{res:{sf: .0002544}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0356873}}}{space 1}{space 1}{ralign 9:{res:{sf: .1904207}}}{space 1}{space 1}{ralign 9:{res:{sf: .0000307}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 2.103734}}}{space 1}{space 1}{ralign 9:{res:{sf: 11.68917}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0563496}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0234741}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0611784}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1654188}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9872893}}}{space 1}{space 1}{ralign 9:{res:{sf: .9872893}}}{space 1}{space 1}{ralign 9:{res:{sf: .9139059}}}{space 1}{space 1}{ralign 9:{res:{sf: .3990236}}}{space 1}{space 1}{ralign 9:{res:{sf: .3990236}}}{space 1}{space 1}{ralign 9:{res:{sf:-.4130379}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2206345}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0236573}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0236573}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0064519}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0064519}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .1184982}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1184982}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .1836358}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1836358}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_DEM_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_DEM_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_DEM_correction_stationary_87_20.dta not found)
+file temp/VAR_DEM_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * FRF
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_FRF.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9987926}}}{space 1}{space 1}{ralign 9:{res:{sf:-9.592079}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0167469}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0366025}}}{space 1}{space 1}{ralign 9:{res:{sf: 6.135232}}}{space 1}{space 1}{ralign 9:{res:{sf:-5.084122}}}{space 1}{space 1}{ralign 9:{res:{sf: .0258245}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf:   .00225}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.134693}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0073504}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0021037}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2948434}}}{space 1}{space 1}{ralign 9:{res:{sf: .0055788}}}{space 1}{space 1}{ralign 9:{res:{sf: .0000312}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0005111}}}{space 1}{space 1}{ralign 9:{res:{sf: .0694187}}}{space 1}{space 1}{ralign 9:{res:{sf: .6528986}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0003567}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1216132}}}{space 1}{space 1}{ralign 9:{res:{sf: .1884681}}}{space 1}{space 1}{ralign 9:{res:{sf: .0009406}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-5.143226}}}{space 1}{space 1}{ralign 9:{res:{sf: 4.783669}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0656143}}}{space 1}{space 1}{ralign 9:{res:{sf: .0129029}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0027122}}}{space 1}{space 1}{ralign 9:{res:{sf: .1475741}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9881045}}}{space 1}{space 1}{ralign 9:{res:{sf: .9749341}}}{space 1}{space 1}{ralign 9:{res:{sf: .8803835}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1490674}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1490674}}}{space 1}{space 1}{ralign 9:{res:{sf: .0561691}}}{space 1}{space 1}{ralign 9:{res:{sf: .0561691}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .1807425}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0519838}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .3785198}}}{space 1}{space 1}{ralign 9:{res:{sf:-.3785198}}}{space 1}{space 1}{ralign 9:{res:{sf: .2451746}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2451746}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_FRF_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_FRF_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_FRF_correction_stationary_87_20.dta not found)
+file temp/VAR_FRF_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * GBP
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_GBP.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.039189}}}{space 1}{space 1}{ralign 9:{res:{sf:-.7273528}}}{space 1}{space 1}{ralign 9:{res:{sf:-3.245998}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0520785}}}{space 1}{space 1}{ralign 9:{res:{sf:-5.403259}}}{space 1}{space 1}{ralign 9:{res:{sf:   -1.375}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0135327}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0015273}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.092487}}}{space 1}{space 1}{ralign 9:{res:{sf: .0469271}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0012193}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0706178}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0415788}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0000643}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0014198}}}{space 1}{space 1}{ralign 9:{res:{sf: .0812213}}}{space 1}{space 1}{ralign 9:{res:{sf: .8888775}}}{space 1}{space 1}{ralign 9:{res:{sf:  .001744}}}{space 1}{space 1}{ralign 9:{res:{sf: -.013144}}}{space 1}{space 1}{ralign 9:{res:{sf: .2271315}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0005224}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 4.047602}}}{space 1}{space 1}{ralign 9:{res:{sf:  3.82627}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: -.083411}}}{space 1}{space 1}{ralign 9:{res:{sf: .0218398}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0617797}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1326821}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9955047}}}{space 1}{space 1}{ralign 9:{res:{sf: .9385844}}}{space 1}{space 1}{ralign 9:{res:{sf: .9385844}}}{space 1}{space 1}{ralign 9:{res:{sf: .3701565}}}{space 1}{space 1}{ralign 9:{res:{sf: .3701565}}}{space 1}{space 1}{ralign 9:{res:{sf: .2038642}}}{space 1}{space 1}{ralign 9:{res:{sf:-.3911035}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.2496083}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1555847}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .0104079}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0104079}}}{space 1}{space 1}{ralign 9:{res:{sf:  .101795}}}{space 1}{space 1}{ralign 9:{res:{sf: -.101795}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_GBP_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_GBP_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_GBP_correction_stationary_87_20.dta not found)
+file temp/VAR_GBP_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * ITL
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_ITL.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.018359}}}{space 1}{space 1}{ralign 9:{res:{sf:-11.81012}}}{space 1}{space 1}{ralign 9:{res:{sf:-2.753543}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0617705}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.278951}}}{space 1}{space 1}{ralign 9:{res:{sf:  1.13855}}}{space 1}{space 1}{ralign 9:{res:{sf: .0331862}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0015001}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.224997}}}{space 1}{space 1}{ralign 9:{res:{sf: .0480526}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0014655}}}{space 1}{space 1}{ralign 9:{res:{sf:-.3890738}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0059302}}}{space 1}{space 1}{ralign 9:{res:{sf: .0000634}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0013562}}}{space 1}{space 1}{ralign 9:{res:{sf: .1328221}}}{space 1}{space 1}{ralign 9:{res:{sf: .7979689}}}{space 1}{space 1}{ralign 9:{res:{sf: .0011129}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0956817}}}{space 1}{space 1}{ralign 9:{res:{sf: .3954149}}}{space 1}{space 1}{ralign 9:{res:{sf:  .000053}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-3.238802}}}{space 1}{space 1}{ralign 9:{res:{sf: 4.813457}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0792424}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0101354}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0175966}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2232067}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.5690029}}}{space 1}{space 1}{ralign 9:{res:{sf: .9955321}}}{space 1}{space 1}{ralign 9:{res:{sf: .9739987}}}{space 1}{space 1}{ralign 9:{res:{sf: .8537202}}}{space 1}{space 1}{ralign 9:{res:{sf: .4267791}}}{space 1}{space 1}{ralign 9:{res:{sf:  .016641}}}{space 1}{space 1}{ralign 9:{res:{sf:  .016641}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .1635083}}}{space 1}{space 1}{ralign 9:{res:{sf: .1635083}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .2065227}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2065227}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .2177738}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2177738}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_ITL_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_ITL_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_ITL_correction_stationary_87_20.dta not found)
+file temp/VAR_ITL_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * JPY
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_JPY.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.034341}}}{space 1}{space 1}{ralign 9:{res:{sf:-3.295033}}}{space 1}{space 1}{ralign 9:{res:{sf: 10.36667}}}{space 1}{space 1}{ralign 9:{res:{sf: .0267229}}}{space 1}{space 1}{ralign 9:{res:{sf:  5.63481}}}{space 1}{space 1}{ralign 9:{res:{sf: -16.5679}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0733872}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0000253}}}{space 1}{space 1}{ralign 9:{res:{sf:  1.13102}}}{space 1}{space 1}{ralign 9:{res:{sf: .0817336}}}{space 1}{space 1}{ralign 9:{res:{sf: .0008725}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2415106}}}{space 1}{space 1}{ralign 9:{res:{sf: -.120787}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0006604}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:  .000225}}}{space 1}{space 1}{ralign 9:{res:{sf: .0895156}}}{space 1}{space 1}{ralign 9:{res:{sf: .8889654}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0001087}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0668771}}}{space 1}{space 1}{ralign 9:{res:{sf: .2468985}}}{space 1}{space 1}{ralign 9:{res:{sf: .0000541}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0221249}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.230598}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0418665}}}{space 1}{space 1}{ralign 9:{res:{sf: .0537441}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0378047}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1410672}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9917622}}}{space 1}{space 1}{ralign 9:{res:{sf: .9917622}}}{space 1}{space 1}{ralign 9:{res:{sf: .9191973}}}{space 1}{space 1}{ralign 9:{res:{sf:-.4471415}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2566304}}}{space 1}{space 1}{ralign 9:{res:{sf: .1451855}}}{space 1}{space 1}{ralign 9:{res:{sf: .1451855}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .2825029}}}{space 1}{space 1}{ralign 9:{res:{sf: .2825029}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0079515}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0079515}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .1613797}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1613797}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0471716}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0471716}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_JPY_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_JPY_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_JPY_correction_stationary_87_20.dta not found)
+file temp/VAR_JPY_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * NOK
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_NOK.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.030401}}}{space 1}{space 1}{ralign 9:{res:{sf:-4.248766}}}{space 1}{space 1}{ralign 9:{res:{sf: 2.867758}}}{space 1}{space 1}{ralign 9:{res:{sf: .0223479}}}{space 1}{space 1}{ralign 9:{res:{sf: 5.167135}}}{space 1}{space 1}{ralign 9:{res:{sf:-2.857136}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0619465}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0019602}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.171422}}}{space 1}{space 1}{ralign 9:{res:{sf: .0072974}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0004435}}}{space 1}{space 1}{ralign 9:{res:{sf:-.3264934}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0075662}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0013644}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0027599}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0047161}}}{space 1}{space 1}{ralign 9:{res:{sf: .4374187}}}{space 1}{space 1}{ralign 9:{res:{sf: .0016234}}}{space 1}{space 1}{ralign 9:{res:{sf: .0599685}}}{space 1}{space 1}{ralign 9:{res:{sf:  .546946}}}{space 1}{space 1}{ralign 9:{res:{sf: .0009307}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-1.303786}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1086868}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0841496}}}{space 1}{space 1}{ralign 9:{res:{sf: .0061933}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0567221}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0219501}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9903382}}}{space 1}{space 1}{ralign 9:{res:{sf: .9737565}}}{space 1}{space 1}{ralign 9:{res:{sf: .9151482}}}{space 1}{space 1}{ralign 9:{res:{sf:-.5695253}}}{space 1}{space 1}{ralign 9:{res:{sf: -.249951}}}{space 1}{space 1}{ralign 9:{res:{sf: .1346241}}}{space 1}{space 1}{ralign 9:{res:{sf: .1346241}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .2788589}}}{space 1}{space 1}{ralign 9:{res:{sf: .0313681}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .3081872}}}{space 1}{space 1}{ralign 9:{res:{sf:-.3081872}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_NOK_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_NOK_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_NOK_correction_stationary_87_20.dta not found)
+file temp/VAR_NOK_correction_stationary_87_20.dta saved
+
+{com}. 
+. ******************************************************************
+. * VAR 
+. ******************************************************************
+. * SEK
+. clear matrix
+{txt}
+{com}. clear
+{txt}
+{com}. import delimited "matrix/B_new_SEK.txt", encoding(ISO-8859-1)
+{res}{text}(9 vars, 9 obs)
+
+{com}. matrix B_new = [b_new_1[1], b_new_2[1], b_new_3[1], b_new_4[1], b_new_5[1], b_new_6[1], b_new_7[1], b_new_8[1], b_new_9[1] \ ///
+>         b_new_1[2], b_new_2[2], b_new_3[2], b_new_4[2], b_new_5[2], b_new_6[2], b_new_7[2], b_new_8[2], b_new_9[2] \ ///
+>         b_new_1[3], b_new_2[3], b_new_3[3], b_new_4[3], b_new_5[3], b_new_6[3], b_new_7[3], b_new_8[3], b_new_9[3] \ ///
+>         b_new_1[4], b_new_2[4], b_new_3[4], b_new_4[4], b_new_5[4], b_new_6[4], b_new_7[4], b_new_8[4], b_new_9[4] \ ///
+>         b_new_1[5], b_new_2[5], b_new_3[5], b_new_4[5], b_new_5[5], b_new_6[5], b_new_7[5], b_new_8[5], b_new_9[5] \ ///
+>         b_new_1[6], b_new_2[6], b_new_3[6], b_new_4[6], b_new_5[6], b_new_6[6], b_new_7[6], b_new_8[6], b_new_9[6] \ ///
+>         b_new_1[7], b_new_2[7], b_new_3[7], b_new_4[7], b_new_5[7], b_new_6[7], b_new_7[7], b_new_8[7], b_new_9[7] \ ///
+>         b_new_1[8], b_new_2[8], b_new_3[8], b_new_4[8], b_new_5[8], b_new_6[8], b_new_7[8], b_new_8[8], b_new_9[8] \ ///
+>         b_new_1[9], b_new_2[9], b_new_3[9], b_new_4[9], b_new_5[9], b_new_6[9], b_new_7[9], b_new_8[9], b_new_9[9] ]
+{txt}
+{com}. 
+. matrix e2 = [0, 1, 0, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. matrix e3 = [0, 0, 1, 0, 0, 0, 0, 0, 0]
+{txt}
+{com}. 
+. * Check Validility
+. matrix eigenvalues r c = B_new
+{txt}
+{com}. matlist B_new
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.074282}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.086583}}}{space 1}{space 1}{ralign 9:{res:{sf:-2.086566}}}{space 1}{space 1}{ralign 9:{res:{sf:-.1092863}}}{space 1}{space 1}{ralign 9:{res:{sf:-6.109732}}}{space 1}{space 1}{ralign 9:{res:{sf: 6.149626}}}{space 1}{space 1}{ralign 9:{res:{sf: .0334977}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0013711}}}{space 1}{space 1}{ralign 9:{res:{sf: 1.052863}}}{space 1}{space 1}{ralign 9:{res:{sf:  .032751}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0002213}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0451957}}}{space 1}{space 1}{ralign 9:{res:{sf: -.058684}}}{space 1}{space 1}{ralign 9:{res:{sf: -.001169}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf:-.0049521}}}{space 1}{space 1}{ralign 9:{res:{sf: .1104468}}}{space 1}{space 1}{ralign 9:{res:{sf: .5534926}}}{space 1}{space 1}{ralign 9:{res:{sf: .0033935}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0255819}}}{space 1}{space 1}{ralign 9:{res:{sf: .2030785}}}{space 1}{space 1}{ralign 9:{res:{sf: .0010226}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        1}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:r1}{space 1}{c |}{space 1}{ralign 9:{res:{sf: 1.337447}}}{space 1}{space 1}{ralign 9:{res:{sf: -2.61688}}}{space 1}
+{space 0}{space 0}{ralign 12:r2}{space 1}{c |}{space 1}{ralign 9:{res:{sf: -.038364}}}{space 1}{space 1}{ralign 9:{res:{sf: .0324602}}}{space 1}
+{space 0}{space 0}{ralign 12:r3}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .0044096}}}{space 1}{space 1}{ralign 9:{res:{sf: .1478322}}}{space 1}
+{space 0}{space 0}{ralign 12:r4}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r5}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r6}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r7}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r8}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+{space 0}{space 0}{ralign 12:r9}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. matlist r
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .9969023}}}{space 1}{space 1}{ralign 9:{res:{sf: .9685474}}}{space 1}{space 1}{ralign 9:{res:{sf: .9152757}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2038013}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2038013}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0214292}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0214292}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:real}{space 1}{c |}{space 1}{ralign 9:{res:{sf: .2588821}}}{space 1}{space 1}{ralign 9:{res:{sf:-.0085087}}}{space 1}
+
+{com}. matlist c
+{res}
+{txt}{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c1}{space 1}{space 1}{ralign 9:c2}{space 1}{space 1}{ralign 9:c3}{space 1}{space 1}{ralign 9:c4}{space 1}{space 1}{ralign 9:c5}{space 1}{space 1}{ralign 9:c6}{space 1}{space 1}{ralign 9:c7}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf: .2742361}}}{space 1}{space 1}{ralign 9:{res:{sf:-.2742361}}}{space 1}{space 1}{ralign 9:{res:{sf:    .1914}}}{space 1}{space 1}{ralign 9:{res:{sf:   -.1914}}}{space 1}
+
+{space 0}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 9:c8}{space 1}{space 1}{ralign 9:c9}{space 1}
+{space 0}{hline 13}{c   +}{hline 11}{hline 11}
+{space 0}{space 0}{ralign 12:complex}{space 1}{c |}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}{space 1}{ralign 9:{res:{sf:        0}}}{space 1}
+
+{com}. *** Calculation of eigenvalues
+.         forval j = 1(1)9{c -(}
+{txt}  2{com}.                 scalar eigen`j' = r[1, `j']^2 + c[1, `j']^2
+{txt}  3{com}.         {c )-}
+{txt}
+{com}. 
+.         if `=eigen1'<=1 & `=eigen2'<=1 & `=eigen3'<=1 & `=eigen4'<=1 & `=eigen5'<=1 & `=eigen6'<=1 & `=eigen7'<=1 & `=eigen8'<=1 & `=eigen9'<=1 {c -(}
+.                 display "Valid"
+{res}Valid
+{com}.         {c )-}
+{txt}
+{com}.         else{c -(}
+.                 display "Invalid"
+.         {c )-}
+{txt}
+{com}. 
+. * Calculate s_T s_IP s_diff s_diff_shock
+. use temp/VAR_SEK_est_87_20.dta, clear
+{txt}
+{com}. 
+. scalar N =_N
+{txt}
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         mat psi`i' = (q_dev[`i']\pi_dev[`i']\i_dev[`i']\q_dev_lag[`i']\pi_dev_lag[`i']\i_dev_lag[`i']\q_dev_lag2[`i']\pi_dev_lag2[`i']\i_dev_lag2[`i'])
+{txt}  3{com}. {c )-}
+{txt}
+{com}. 
+. matrix IP = -1*e3 * inv(I(9)-B_new)
+{txt}
+{com}. matrix T = e2 * B_new * inv(I(9)-B_new)
+{txt}
+{com}. gen s_T =.
+{txt}(400 missing values generated)
+
+{com}. gen s_IP =.
+{txt}(400 missing values generated)
+
+{com}. 
+. forval i = 1/`=N'{c -(}
+{txt}  2{com}.         matrix temp1 = IP*psi`i'
+{txt}  3{com}.         matrix temp2 = T*psi`i'
+{txt}  4{com}.         quietly replace s_IP = temp1[1,1] if t == `i'
+{txt}  5{com}.         quietly replace s_T = q_dev - temp2[1,1] + s_T_extra if t == `i'
+{txt}  6{com}. {c )-}
+{txt}
+{com}. gen s_diff = s_T - s_IP
+{txt}(2 missing values generated)
+
+{com}. 
+. xtset cty2 t
+{res}{txt}{col 8}panel variable:  {res}cty2 (strongly balanced)
+{txt}{col 9}time variable:  {res}{col 25}t, 1 to 400
+{txt}{col 17}delta:  {res}1 unit
+{txt}
+{com}. gen s_diff_shock = d.s_diff
+{txt}(3 missing values generated)
+
+{com}. gen i_diff_shock = d.i_diff
+{txt}(1 missing value generated)
+
+{com}. 
+. save temp/VAR_SEK_correction_stationary_87_20, replace
+{txt}(note: file temp/VAR_SEK_correction_stationary_87_20.dta not found)
+file temp/VAR_SEK_correction_stationary_87_20.dta saved
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/wangmengqi/Desktop/UW/Courses/Econ872/Secondpart/task210108/stationary/87_20/correction_stationary_87_20.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 Jan 2021, 17:47:50
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
